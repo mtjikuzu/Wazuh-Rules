@@ -64,7 +64,7 @@ function cert_generateAdmincertificate() {
 
     eval "openssl genrsa -out ${cert_tmp_path}/admin-key-temp.pem 2048 ${debug}"
     eval "openssl pkcs8 -inform PEM -outform PEM -in ${cert_tmp_path}/admin-key-temp.pem -topk8 -nocrypt -v1 PBE-SHA1-3DES -out ${cert_tmp_path}/admin-key.pem ${debug}"
-    eval "openssl req -new -key ${cert_tmp_path}/admin-key.pem -out ${cert_tmp_path}/admin.csr -batch -subj '/C=US/L=Texas/O=SOCFortress/OU=SOCFortress/CN=admin' ${debug}"
+    eval "openssl req -new -key ${cert_tmp_path}/admin-key.pem -out ${cert_tmp_path}/admin.csr -batch -subj '/C=US/L=Texas/O=securedwords/OU=securedwords/CN=admin' ${debug}"
     eval "openssl x509 -days 3650 -req -in ${cert_tmp_path}/admin.csr -CA ${cert_tmp_path}/root-ca.pem -CAkey ${cert_tmp_path}/root-ca.key -CAcreateserial -sha256 -out ${cert_tmp_path}/admin.pem ${debug}"
 
 }
@@ -81,8 +81,8 @@ function cert_generateCertificateconfiguration() {
         [req_distinguished_name]
         C = US
         L = Texas
-        O = SOCFortress
-        OU = SOCFortress
+        O = securedwords
+        OU = securedwords
         CN = cname
 
         [ v3_req ]
